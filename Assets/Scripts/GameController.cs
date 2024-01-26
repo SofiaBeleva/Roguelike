@@ -10,17 +10,12 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     private static float health = 6;
-
     private static int maxHealth = 6;
-
     private static float moveSpeed = 5f;
-
     private static float fireRate = 0.5f;
-
     private static float bulletSize = 0.5f;
 
     private bool mushCollected = false;
-
     private bool meatCollected = false;
 
     public List<string> collectedNames = new List<string>();
@@ -56,9 +51,9 @@ public class GameController : MonoBehaviour
         }
     }
     public static void HealPlayer(float healAmount)
-        {
-            health = Mathf.Min(maxHealth, health + healAmount);
-        }
+    {
+        health = Mathf.Min(maxHealth, health + healAmount);
+    }
 
     public static void MoveSpeedChange(float speed)
     {
