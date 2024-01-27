@@ -62,17 +62,17 @@ public class EnemyController : MonoBehaviour
             //break;
             case (EnemyState.Wender):
                 Wander();
-            break;
+                break;
 
             case (EnemyState.Follow):
                 Follow();
-            break;
+                break;
 
             case (EnemyState.Die):
-            break;
+                break;
             case (EnemyState.Attack):
                 Attack();
-            break;
+                break;
         }
 
         if (!notInRoom)
@@ -133,19 +133,19 @@ public class EnemyController : MonoBehaviour
     {
         if (!coolDownAttack)
         {
-            switch(enemyType)
+            switch (enemyType)
             {
                 case (EnemyType.Melee):
                     GameController.DamagePlayer(1);
                     StartCoroutine(CoolDown());
-                break;
-                case(EnemyType.Ranged):
+                    break;
+                case (EnemyType.Ranged):
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
                     bullet.GetComponent<BulletController>().GetPlayer(player.transform);
                     bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
                     bullet.GetComponent<BulletController>().isEnemyBullet = true;
                     StartCoroutine(CoolDown());
-                break;
+                    break;
             }
         }
     }
@@ -159,6 +159,7 @@ public class EnemyController : MonoBehaviour
     public void Death()
     {
         RoomController.instance.StartCoroutine(RoomController.instance.RoomCoroutine());
+        RecordMeneder.record += 1;
         Destroy(gameObject);
     }
 }

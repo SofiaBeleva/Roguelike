@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class GameController : MonoBehaviour
     public static float FireRate { get => fireRate; set => fireRate = value; }
     public static float BulletSize { get => bulletSize; set => bulletSize = value; }
 
-    public TMP_Text healthText;
+    public TMP_Text HealthText;
 
     // Start is called before the first frame update
     private void Awake()
@@ -36,10 +37,18 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        if(Health <= 0)
+        {
+            Health = 6;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + health;
+        HealthText.text = "Health: " + health;
     }
 
     public static void DamagePlayer(int damage)
@@ -91,6 +100,6 @@ public class GameController : MonoBehaviour
 
     private static void KillPlayer()
     {
-
+        SceneManager.LoadScene("Menu");
     }
 }
