@@ -25,7 +25,11 @@ public class RecordMeneder : MonoBehaviour
         if (PlayerPrefs.GetInt("record") <= highrecord)
         {
             PlayerPrefs.SetInt("record", highrecord);
+            GetComponent<HighscoreTable>().AddHighscoreEntry(highrecord);
+            Debug.Log("Current High Record: " + highrecord); 
+            Debug.Log("Stored High Record: " + PlayerPrefs.GetInt("record"));
         }
-        Record.text = "RECORD" + PlayerPrefs.GetInt("record").ToString();
+        Record.text = "RECORD " + PlayerPrefs.GetInt("record").ToString();
+
     }
 }

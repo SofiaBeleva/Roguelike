@@ -15,9 +15,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("MenuQuit");
     }
 
+    public static int yes = 0;
     public void PresYes()
     {
         Debug.Log("Exit");
+        yes++;
     }
 
     public void PresNo()
