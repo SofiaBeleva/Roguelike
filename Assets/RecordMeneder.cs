@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class RecordMeneder : MonoBehaviour
 {
-    [SerializeField] TMP_Text Record;
-    [SerializeField] TMP_Text NowRecord;
+    [SerializeField] Text Record;
+    [SerializeField] HighscoreTable leaderboard;
 
     public static float record;
     int highrecord;
@@ -21,15 +18,11 @@ public class RecordMeneder : MonoBehaviour
     void Update()
     {
         highrecord = (int)record;
-        NowRecord.text = highrecord.ToString();
-        if (PlayerPrefs.GetInt("record") <= highrecord)
-        {
-            PlayerPrefs.SetInt("record", highrecord);
-            GetComponent<HighscoreTable>().AddHighscoreEntry(highrecord);
-            Debug.Log("Current High Record: " + highrecord); 
-            Debug.Log("Stored High Record: " + PlayerPrefs.GetInt("record"));
-        }
+        PlayerPrefs.SetInt("record", highrecord);
         Record.text = "RECORD " + PlayerPrefs.GetInt("record").ToString();
-
+        if (GameController.TF)
+        {
+                leaderboard.UpdateLeaderboard(highrecord);
+        }
     }
 }

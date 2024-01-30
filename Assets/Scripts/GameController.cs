@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour
 
     public TMP_Text HealthText;
 
+    public static bool TF = false;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -98,8 +100,9 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private static void KillPlayer()
+    public static void KillPlayer()
     {
         SceneManager.LoadScene("Menu");
+        TF = true;
     }
 }
